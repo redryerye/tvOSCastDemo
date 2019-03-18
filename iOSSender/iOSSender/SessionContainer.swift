@@ -11,9 +11,7 @@ import MultipeerConnectivity
 class SessionContainer: NSObject {
     
     let session: MCSession
-    
     private let displayName: String
-    private let advertiserAssistant: MCAdvertiserAssistant
     
     init(displayName: String, serviceType: String) {
         
@@ -23,27 +21,19 @@ class SessionContainer: NSObject {
         let peerID = MCPeerID(displayName: displayName)
         session = MCSession(peer: peerID)
         
-        advertiserAssistant = MCAdvertiserAssistant(serviceType: serviceType, discoveryInfo: nil, session: session)
-        
         super.init()
         
         session.delegate = self
     }
     
     deinit {
-        advertiserAssistant.stop()
         session.disconnect()
     }
     
-    func startAdvertise() {
-        advertiserAssistant.start()
+    func sendImage(_ image: UIImage) {
+        let data = image.pngData()
+        try? self.session.send(data!, toPeers: self.session.connectedPeers, with: .reliable)
     }
-    
-    func stopAdvertise() {
-        advertiserAssistant.stop()
-    }
-    
-    
 }
 
 extension SessionContainer: MCSessionDelegate {
@@ -51,7 +41,10 @@ extension SessionContainer: MCSessionDelegate {
         print(#function)
         
         switch state {
+            
         case MCSessionState.connected:
+            print("Connected: \(peerID.displayName)")
+            
             UserDefaults.standard.set(true, forKey: "isCasting")
             
         case MCSessionState.connecting:
@@ -59,11 +52,14 @@ extension SessionContainer: MCSessionDelegate {
             
         case MCSessionState.notConnected:
             print("Not Connected: \(peerID.displayName)")
+            
             UserDefaults.standard.set(false, forKey: "isCasting")
             
             DispatchQueue.main.async {
                 let topVC = UIApplication.shared.keyWindow!.rootViewController!.topMostViewController() as! ViewController
                 topVC.castButton.setImage(topVC.setImage, for: .normal)
+                
+                topVC.logLabel.text = "MCSession Not Connected"
             }
             
             

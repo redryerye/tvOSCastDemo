@@ -17,6 +17,7 @@ enum Const {
 class ViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var resetButton: UIButton!
     
     var displayName: String!
     var peerID: MCPeerID!
@@ -27,8 +28,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setConnectivity()
-        hostSession()
+
         
+        resetButton.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,9 +54,18 @@ class ViewController: UIViewController {
     func hostSession() {
         print("Host with \(Const.serviceType)")
         
-        
         self.mcAdvertiserAssistant = MCAdvertiserAssistant(serviceType: Const.serviceType, discoveryInfo: nil, session: self.session)
         self.mcAdvertiserAssistant.start()
+    }
+    
+    func stopSession() {
+        self.mcAdvertiserAssistant.stop()
+    }
+    
+    @IBAction func resetAction(_ sender: Any) {
+        imageView.image = UIImage(named: "waiting-meme")
+        
+        resetButton.isHidden = true
     }
 }
 
@@ -70,7 +81,10 @@ extension ViewController: MCSessionDelegate {
             
             print("Got the Image!!")
             
-            imageView.image = image
+            DispatchQueue.main.async {
+                self.imageView.image = image
+                self.resetButton.isHidden = false
+            }
         }
     }
     

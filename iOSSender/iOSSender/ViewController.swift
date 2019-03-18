@@ -41,15 +41,17 @@ class ViewController: UIViewController {
         self.mcBrowser.delegate = self
         self.mcBrowser.minimumNumberOfPeers = kMCSessionMinimumNumberOfPeers
         self.mcBrowser.maximumNumberOfPeers = kMCSessionMaximumNumberOfPeers
-        
     }
     
     @IBAction func castAction(_ sender: Any) {
         
-        
-        
         if UserDefaults.standard.bool(forKey: "isCasting") {
-            print("\n\n\nSEND!!!\n")
+            logLabel.text = "Sending Image.."
+            
+            // Send Image to mcPeer
+            sessionContainer.sendImage(UIImage(named: "try-swift-logo")!)
+            
+            logLabel.text = "Image Sent!"
         } else {
             self.present(self.mcBrowser, animated: true, completion: nil)
         }

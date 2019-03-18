@@ -22,19 +22,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="waiting-meme" translatesAutoresizingMaskIntoConstraints="NO" id="lVk-Hi-p4E">
-                                <rect key="frame" x="773" y="392" width="375" height="297"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="waiting-meme" translatesAutoresizingMaskIntoConstraints="NO" id="lVk-Hi-p4E">
+                                <rect key="frame" x="685" y="340" width="550" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="550" id="B20-El-flz"/>
+                                    <constraint firstAttribute="height" constant="400" id="Fx0-bv-aoW"/>
+                                </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-m3-qtM">
+                                <rect key="frame" x="814" y="929" width="292" height="86"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Reset Image"/>
+                                <connections>
+                                    <action selector="resetAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Dkj-Fi-M3H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2510334849357605" green="0.73497045040130615" blue="0.74219077825546265" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lVk-Hi-p4E" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3QD-Oa-E6f"/>
                             <constraint firstItem="lVk-Hi-p4E" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="QZk-Ia-pdR"/>
+                            <constraint firstItem="UgB-m3-qtM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RCV-Ea-TPK"/>
+                            <constraint firstAttribute="bottom" secondItem="UgB-m3-qtM" secondAttribute="bottom" constant="65" id="wth-GG-Sgr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wu6-TO-1qx"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="lVk-Hi-p4E" id="HTE-LZ-aH6"/>
+                        <outlet property="resetButton" destination="UgB-m3-qtM" id="Pxa-r0-HDA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
