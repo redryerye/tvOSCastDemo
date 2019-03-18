@@ -7,16 +7,85 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        
-    }
-
-
+enum Const {
+    static let serviceType: String = "tvOSCastDemo"
+    static let displayName: String = UIDevice.current.name
 }
 
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var displayName: String!
+    var peerID: MCPeerID!
+    var session: MCSession!
+    var mcAdvertiserAssistant: MCAdvertiserAssistant!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setConnectivity()
+        hostSession()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        session.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if self.mcAdvertiserAssistant == nil {
+            // Host MCSession
+            hostSession()
+        }
+    }
+    
+    func setConnectivity() {
+        print(#function)
+        
+        peerID = MCPeerID(displayName: Const.displayName)
+        session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .required)
+    }
+    
+    func hostSession() {
+        print("Host with \(Const.serviceType)")
+        
+        
+        self.mcAdvertiserAssistant = MCAdvertiserAssistant(serviceType: Const.serviceType, discoveryInfo: nil, session: self.session)
+        self.mcAdvertiserAssistant.start()
+    }
+}
+
+extension ViewController: MCSessionDelegate {
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        print(#function)
+    }
+    
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        print(#function)
+        
+        if let image = UIImage(data: data) {
+            
+            print("Got the Image!!")
+            
+            imageView.image = image
+        }
+    }
+    
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        print(#function)
+        
+    }
+    
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+        print(#function)
+    }
+    
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+        print(#function)
+    }
+    
+    
+}

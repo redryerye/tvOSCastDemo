@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOSSender" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="try-swift-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dMT-Z6-fuz">
+                                <rect key="frame" x="87.5" y="293" width="200" height="81"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tvOS Cast Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfn-vq-VEm">
+                                <rect key="frame" x="118" y="374" width="174" height="28"/>
+                                <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-q5-xPv">
+                                <rect key="frame" x="137.5" y="504" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Yc4-Rq-eR7"/>
+                                    <constraint firstAttribute="width" constant="100" id="gOB-af-frZ"/>
+                                </constraints>
+                                <state key="normal" image="cast-button"/>
+                                <connections>
+                                    <action selector="castAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h3Q-5v-eHa"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIo-Wc-oMI">
+                                <rect key="frame" x="172" y="625" width="31" height="27"/>
+                                <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25098039215686274" green="0.73497045040130615" blue="0.74219077825546265" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aqK-q5-xPv" secondAttribute="bottom" constant="63" id="0c1-ug-LV8"/>
+                            <constraint firstItem="EIo-Wc-oMI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Eyq-NQ-cV1"/>
+                            <constraint firstItem="dMT-Z6-fuz" firstAttribute="bottom" secondItem="Jfn-vq-VEm" secondAttribute="top" id="LTD-Ef-DeA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EIo-Wc-oMI" secondAttribute="bottom" constant="15" id="SrU-N0-8g6"/>
+                            <constraint firstItem="dMT-Z6-fuz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fGi-Eb-Pkx"/>
+                            <constraint firstItem="dMT-Z6-fuz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hX5-kg-0Sh"/>
+                            <constraint firstItem="aqK-q5-xPv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pU3-xd-5uR"/>
+                            <constraint firstItem="dMT-Z6-fuz" firstAttribute="trailing" secondItem="Jfn-vq-VEm" secondAttribute="trailing" constant="-4.5" id="tay-31-WNi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="castButton" destination="aqK-q5-xPv" id="zs8-r2-CS8"/>
+                        <outlet property="logLabel" destination="EIo-Wc-oMI" id="Xov-Ym-9qP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cast-button" width="241" height="241"/>
+        <image name="try-swift-logo" width="200" height="81"/>
+    </resources>
+</document>
