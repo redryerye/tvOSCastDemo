@@ -34,9 +34,6 @@
                                     <constraint firstAttribute="width" constant="100" id="gOB-af-frZ"/>
                                 </constraints>
                                 <state key="normal" image="cast-button"/>
-                                <connections>
-                                    <action selector="castAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h3Q-5v-eHa"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIo-Wc-oMI">
                                 <rect key="frame" x="172" y="625" width="31" height="27"/>
@@ -45,7 +42,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.25098039215686274" green="0.73497045040130615" blue="0.74219077825546265" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.25098039215686274" green="0.73333333333333328" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aqK-q5-xPv" secondAttribute="bottom" constant="63" id="0c1-ug-LV8"/>
                             <constraint firstItem="EIo-Wc-oMI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Eyq-NQ-cV1"/>
@@ -59,7 +56,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="castButton" destination="aqK-q5-xPv" id="zs8-r2-CS8"/>
                         <outlet property="logLabel" destination="EIo-Wc-oMI" id="Xov-Ym-9qP"/>
                     </connections>
                 </viewController>

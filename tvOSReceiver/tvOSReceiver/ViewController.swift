@@ -54,8 +54,9 @@ class ViewController: UIViewController {
     func hostSession() {
         print("Host with \(Const.serviceType)")
         
-        self.mcAdvertiserAssistant = MCAdvertiserAssistant(serviceType: Const.serviceType, discoveryInfo: nil, session: self.session)
-        self.mcAdvertiserAssistant.start()
+        mcAdvertiserAssistant = MCAdvertiserAssistant(serviceType: Const.serviceType, discoveryInfo: nil, session: self.session)
+        mcAdvertiserAssistant.start()
+        
     }
     
     func stopSession() {

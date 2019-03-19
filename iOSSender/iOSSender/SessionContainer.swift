@@ -56,10 +56,11 @@ extension SessionContainer: MCSessionDelegate {
             UserDefaults.standard.set(false, forKey: "isCasting")
             
             DispatchQueue.main.async {
-                let topVC = UIApplication.shared.keyWindow!.rootViewController!.topMostViewController() as! ViewController
-                topVC.castButton.setImage(topVC.setImage, for: .normal)
-                
-                topVC.logLabel.text = "MCSession Not Connected"
+                if let topVC = UIApplication.shared.keyWindow!.rootViewController!.topMostViewController() as? ViewController {
+                    topVC.castButton.setImage(topVC.setImage, for: .normal)
+
+                    topVC.logLabel.text = "MCSession Not Connected"
+                }
             }
             
             

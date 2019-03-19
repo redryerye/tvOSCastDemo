@@ -9,14 +9,18 @@
 import UIKit
 import MultipeerConnectivity
 
+//class ViewController: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate {
 class ViewController: UIViewController {
-    
+
     @IBOutlet weak var logLabel: UILabel!
     @IBOutlet weak var castButton: UIButton!
     
-    var session: MCSession!
     var mcAdvertiserAssistant: MCAdvertiserAssistant!
     var mcBrowser: MCBrowserViewController!
+    
+    var session: MCSession!
+    var advertiser: MCNearbyServiceAdvertiser!
+    var browser: MCNearbyServiceBrowser!
     
     let castImage = UIImage(named: "cast-button")
     let setImage = UIImage(named: "set-button")
@@ -34,13 +38,57 @@ class ViewController: UIViewController {
         castButton.setImage(setImage, for: .normal)
         
         UserDefaults.standard.set(false, forKey: "isCasting")
+        
+        
+        /*
+ 
+        // Initiate a Session
+        let peerID = MCPeerID(displayName: "hoge")
+        session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
+        session.delegate = self
+        
+        
+        // Set an Advertiser for the service
+        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: "foobar")
+        advertiser.delegate = self
+        advertiser.startAdvertisingPeer()
+        
+        
+        // Look for the service offered by nearby devices
+        browser = MCNearbyServiceBrowser(peer: peerID, serviceType: "foobar")
+        browser.delegate = self
+        browser.startBrowsingForPeers()
+        
+        */
+        
+        
     }
 
     func setConnection() {
-        self.mcBrowser = MCBrowserViewController(serviceType: Const.serviceType, session: sessionContainer.session)
-        self.mcBrowser.delegate = self
-        self.mcBrowser.minimumNumberOfPeers = kMCSessionMinimumNumberOfPeers
-        self.mcBrowser.maximumNumberOfPeers = kMCSessionMaximumNumberOfPeers
+        mcBrowser = MCBrowserViewController(serviceType: Const.serviceType, session: sessionContainer.session)
+        mcBrowser.delegate = self
+        
+        mcBrowser.minimumNumberOfPeers = kMCSessionMinimumNumberOfPeers // = 2
+        mcBrowser.maximumNumberOfPeers = kMCSessionMaximumNumberOfPeers // = 8
+        
+        /*
+        // Generating friendly UI for us
+        
+        // Browse
+        mcBrowser = MCBrowserViewController(serviceType: "foobar", session: session)
+        mcBrowser.delegate = self
+        
+        mcBrowser.minimumNumberOfPeers = kMCSessionMinimumNumberOfPeers // = 2
+        mcBrowser.maximumNumberOfPeers = kMCSessionMaximumNumberOfPeers // = 8
+        
+        
+        // Advertise
+        mcAdvertiserAssistant = MCAdvertiserAssistant(serviceType: "foobar", discoveryInfo: nil, session: session)
+        mcAdvertiserAssistant.delegate = self
+        
+        */
+        
+        
     }
     
     @IBAction func castAction(_ sender: Any) {
