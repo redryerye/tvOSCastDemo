@@ -34,6 +34,9 @@
                                     <constraint firstAttribute="width" constant="100" id="gOB-af-frZ"/>
                                 </constraints>
                                 <state key="normal" image="cast-button"/>
+                                <connections>
+                                    <action selector="castAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ken-yF-wbV"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIo-Wc-oMI">
                                 <rect key="frame" x="172" y="625" width="31" height="27"/>
@@ -56,6 +59,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="castButton" destination="aqK-q5-xPv" id="Nzg-1j-0ml"/>
                         <outlet property="logLabel" destination="EIo-Wc-oMI" id="Xov-Ym-9qP"/>
                     </connections>
                 </viewController>
